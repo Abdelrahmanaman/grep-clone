@@ -40,7 +40,7 @@ pub fn search<'a>(query: &str, content: &'a str) -> Vec<(i32, &'a str)> {
         }
         line_num += 1;
     }
-
+    print!("{:?}", results);
     results
 }
 
@@ -53,11 +53,11 @@ mod tests {
 
     #[test]
     fn find_result() -> Result<(), io::Error> {
-        let query = "Hello";
+        let query = "fo";
 
-        let content = fs::read_to_string("foo.rs")?;
+        let content = fs::read_to_string("foo.test.rs")?;
 
-        assert_eq!(vec!["print!(\"Hello World\")"], search(query, &content));
+        assert_eq!(vec![(2, "print!(\"Hello foo\")")], search(query, &content));
 
         Ok(())
     }
