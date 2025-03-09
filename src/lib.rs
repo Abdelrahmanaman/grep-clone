@@ -40,11 +40,8 @@ mod tests {
 
     #[test]
     fn find_result() {
-        let query = "duct";
-        let content = "\
-        Rust:
-        safe, fast, productive.
-        Pick three.";
-        assert_eq!(vec!["safe, fast, productive."], search(query, content))
+        let query = "Hello";
+        let content = fs::read_to_string("foo.rs").expect("Failed to read file");
+        assert_eq!(vec!["print!(\"Hello World\")"], search(query, &content))
     }
 }
